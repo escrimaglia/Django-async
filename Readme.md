@@ -4,7 +4,7 @@
 
 ### Servidor Gunicorn
 
-Cuando es necesario ejecuatr procesos Asyncs, no es sufuciente Gunicorn y para eso se utiliza Uvicorn. Aunque este puede ejectar tambien procesos syncs, no es tan eficiente como lo es un servidor especifico como Gunicorn. Pero, en un esenario donde es necesario ejecutar tareas SYnc y Async, se debeconfigurar Gunicorn con workers de clase UvicornWorker.
+Cuando es necesario ejecuatr procesos Asyncs, no es sufuciente Gunicorn (solo soporta configuraciones tipo sync) y para eso se utiliza Uvicorn. Aunque este puede ejectar tambien procesos syncs, no es tan eficiente como lo es un servidor especifico como Gunicorn. Pero, en un esenario donde es necesario ejecutar tareas Sync y Async, se debeconfigurar Gunicorn con workers de clase UvicornWorker.
 
 Gunicorn actúa como el servidor maestro que coordina los workers y gestiona el ciclo de vida de los procesos. Ademas, distribuye las solicitudes entrantes a los workers según la configuración (como workers y worker_class).
 
