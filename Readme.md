@@ -18,7 +18,7 @@ Cuando un worker de clase UvicornWorker recibe una solicitud, evalúa si la vist
 
 #### gunicorn.conf.py
 
-Este es el archivo de configuración de Gunicorn. Aqui se especifican la cantidad de workers y el tipo de qorker.
+Este es el archivo de configuración de Gunicorn. Aqui se especifican la cantidad de workers y el tipo de worker.
 
 ```
 import multiprocessing
