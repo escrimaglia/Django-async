@@ -33,7 +33,7 @@ worker_class = "uvicorn.workers.UvicornWorker" #Usa uvicorn para ASGI
 
 ### Servidor Uvicorn
 
-En el caso de que Django pueda ser utilizado directamente con el servidor HTTP Uvicorn, el servicio se ejecutrá de la siguiente manera:
+Cuando Django pueda ser utilizado directamente con el servidor HTTP Uvicorn, el servicio se ejecutará de la siguiente manera:
 
 `uvicorn mixedproject.asgi:application --reload`
 
