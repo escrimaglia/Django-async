@@ -4,9 +4,9 @@
 
 ### Servidor Gunicorn
 
-Cuando es necesario ejecuatr procesos Asyncs, no es sufuciente Gunicorn (solo soporta configuraciones tipo sync) y para eso se utiliza Uvicorn. Aunque este puede ejectar tambien procesos syncs, no es tan eficiente como lo es un servidor especifico como Gunicorn. Pero, en un esenario donde es necesario ejecutar tareas Syncs y Asyncs, se debeconfigurar Gunicorn con workers de clase UvicornWorker.
+Cuando es necesario ejecuatr procesos Asyncs, no es sufuciente Gunicorn (solo soporta operaciones tipo sync), y por ende hay que utilizar un servidor tipo Uvicorn. Entonces, en un esenario donde es necesario ejecutar tareas Syncs y Asyncs, se debe configurar Django para que use Gunicorn con workers de clase UvicornWorker, o si es posible, para que utilize directamente Uvicorn.
 
-Gunicorn actúa como el servidor maestro que coordina los workers y gestiona el ciclo de vida de los procesos. Ademas, distribuye las solicitudes entrantes a los workers según la configuración (como workers y worker_class).
+En el caso de usar Gunicorn, este actúa como el servidor maestro que coordina los workers y gestiona el ciclo de vida de los procesos. Ademas, distribuye las solicitudes entrantes a los workers según la configuración (cuantos workers y que clase `worker_class`).
 
 ### Uvicorn Worker
 
@@ -28,5 +28,9 @@ worker_class = "uvicorn.workers.UvicornWorker" #Usa uvicorn para ASGI
 ```
 
 #### Ejecutar el servicio a traves de ./startserver.sh
+
+### Servidor Uvicorn
+
+
 
 Ed Scrimaglia
