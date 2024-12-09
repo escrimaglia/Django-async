@@ -20,9 +20,9 @@ Finalmente, el servidor que se ejecuta para mapear todos los paths es Gunicorn, 
 
 import multiprocessing
 
-bind = "0.0.0.0:8000" #Todas las interfaces responden en el puerto 8000
-workers = multiprocessing.cpu_count() * 2 + 1
-worker_class = "uvicorn.workers.UvicornWorker" #Usa uvicorn para ASGI
+bind = "0.0.0.0:8000" #Todas las interfaces responden en el puerto 8000  
+workers = multiprocessing.cpu_count() * 2 + 1  
+worker_class = "uvicorn.workers.UvicornWorker" #Usa uvicorn para ASGI  
 
 #### Ejecutar el servicio a traves de ./startserver.sh
 
