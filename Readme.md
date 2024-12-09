@@ -35,6 +35,10 @@ worker_class = "uvicorn.workers.UvicornWorker" #Usa uvicorn para ASGI
 
 En el caso de que Django pueda ser utilizado directamente con el servidor HTTP Uvicorn, el servicio se ejecutrá de la siguiente manera:
 
-`uvicorn mixedproject.asgi:appplication --reload`
+`uvicorn mixedproject.asgi:application --reload`
+
+### Sync to Async
+
+En el caso de ejecutar una tarea async en Uvicorn, pero el contenido de la tarea usa librerias tipo sync, acceso a la DB a traves del ORM de Django por ejemplo, se puede producir un bloqueo del bucle de eventos. Para evitar esto, se debe usar el tipo de tarea sync-to-async.
 
 Ed Scrimaglia
