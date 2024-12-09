@@ -2,27 +2,30 @@
 
 ## Projecto Django que ejecuta funciones Sync y Async
 
-### Procesos Sync
+### Servidor Gunicorn
 
-Para los procesos Syncs, se utliza Gunicorn, pues esta construido para eso.
+Cuando es necesario ejecuatr procesos Asyncs, no es sufuciente Gunicorn y para eso se utiliza Uvicorn. Aunque este puede ejectar tambien procesos syncs, no es tan eficiente como lo es un servidor especifico como Gunicorn. Pero, en un esenario donde es necesario ejecutar tareas SYnc y Async, se debeconfigurar Gunicorn con workers de clase UvicornWorker.
 
-### Procesos Async
-
-Para los procesos Asyncs, se utiliza Uvicorn. Aunque este puede ejectar tambien procesos syncs, no es eficiente como lo es un servidor especifico como Gunicorn.
-
-Uvicorn ejecuta los procesos Syncs en un hilo separado no bloqueante (Simula un Non-blocking Async), pero segun la documentacion, ejecutar procesos síncronos en Uvicorn introduce un ligero overhead porque cada operación bloqueante se delega a un thread (Non-blocking Async), lo que puede reducir el rendimiento en comparación con un servidor optimizado para WSGI, como Gunicorn en modo síncrono.
+Gunicorn actúa como el servidor maestro que coordina los workers y gestiona el ciclo de vida de los procesos. Ademas, distribuye las solicitudes entrantes a los workers según la configuración (como workers y worker_class).
 
 ### Uvicorn Worker
 
-Finalmente, el servidor que se ejecuta para mapear todos los paths es Gunicorn, y Uvicorn corre como un worker para ejecutar especificamente las peticiones async
+Cuando un worker de clase UvicornWorker recibe una solicitud, evalúa si la vista o tarea que maneja es síncrona o asíncrona.
+
+- Si la tareas es Sync (def), el worker ejecuta la tarea en un thread pool (un grupo de subprocesos) para evitar bloquear el bucle de eventos principal de asyncio.
+
+- Si la tarea es Async (def async), el worker las ejecuta directamente dentro del bucle de eventos asyncio.
 
 #### gunicorn.conf.py
 
-import multiprocessing
+Este es el archivo de configuración de Gunicorn. Aqui se especifican la cantidad de workers y el tipo de qorker.
 
+```
+import multiprocessing
 bind = "0.0.0.0:8000" #Todas las interfaces responden en el puerto 8000  
 workers = multiprocessing.cpu_count() * 2 + 1  
 worker_class = "uvicorn.workers.UvicornWorker" #Usa uvicorn para ASGI  
+```
 
 #### Ejecutar el servicio a traves de ./startserver.sh
 
