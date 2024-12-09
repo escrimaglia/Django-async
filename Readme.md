@@ -41,4 +41,9 @@ Cuando Django pueda ser utilizado directamente con el servidor HTTP Uvicorn, el 
 
 En el caso de ejecutar una tarea async en Uvicorn, pero el contenido de la tarea usa librerias tipo sync, acceso a la DB a traves del ORM de Django por ejemplo, se puede producir un bloqueo del bucle de eventos. Para evitar esto, se debe usar el tipo de tarea sync-to-async.
 
+#### Instalación servidores Gunicorn y Uvicorn
+
+pip install gunicorn
+pip install uvicorn
+
 Ed Scrimaglia
