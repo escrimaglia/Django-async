@@ -2,6 +2,8 @@ db.sqlite3
 /__pycache__/
 /mixedproject/__pycache__/
 /mixedproject/migrations/__pycache__/
+.gitignore
+
 
 
 
