@@ -9,5 +9,5 @@ def sync_view(request):
     return JsonResponse({'message': 'Hola, proceso sincronico'})
 
 async def async_view(request):
-    await asyncio.sleep(10)
+    await asyncio.sleep(4)
     return JsonResponse({'message': 'Hola, proceso asincronico'})
