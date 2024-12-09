@@ -43,7 +43,7 @@ En el caso de ejecutar una tarea async en Uvicorn, pero el contenido de la tarea
 
 #### Instalación servidores Gunicorn y Uvicorn
 
-pip install gunicorn
+pip install gunicorn  
 pip install uvicorn
 
 Ed Scrimaglia
